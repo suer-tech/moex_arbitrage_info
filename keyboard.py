@@ -1,16 +1,20 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 button_spread = KeyboardButton("Спред")
-button_fiks = KeyboardButton("Зафиксировать ТВХ")
 button_set_proc = KeyboardButton("Сигнал по %")
-button_del = KeyboardButton("Сбросить ТВХ")
-
-greet_kb1 = ReplyKeyboardMarkup(resize_keyboard=True).add(button_spread, button_fiks).row(button_set_proc, button_del)
-
-spread_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
-spread_keyboard.add(KeyboardButton("USD"))
-spread_keyboard.add(KeyboardButton("EUR"))
-spread_keyboard.add(KeyboardButton("CNY"))
 
 
+greet_kb1 = ReplyKeyboardMarkup(resize_keyboard=True).add(button_spread, button_set_proc)
+spread_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("USD"), KeyboardButton("EUR")).row(KeyboardButton("CNY"), KeyboardButton("Главное меню"))
 
+usd_fiks_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Актуальная ТВХ USD"), KeyboardButton("Новая ТВХ USD")).row(KeyboardButton("Сброс ТВХ USD"), KeyboardButton("Назад"))
+eur_fiks_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Актуальная ТВХ EUR"), KeyboardButton("Новая ТВХ EUR")).row(KeyboardButton("Сброс ТВХ EUR"), KeyboardButton("Назад"))
+cny_fiks_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Актуальная ТВХ CNY"), KeyboardButton("Новая ТВХ CNY")).row(KeyboardButton("Сброс ТВХ CNY"), KeyboardButton("Назад"))
+
+usd_yes_no_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Зафиксировать новую точку входа USD")).row(KeyboardButton("Назад"))
+eur_yes_no_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Зафиксировать новую точку входа EUR")).row(KeyboardButton("Назад"))
+cny_yes_no_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Зафиксировать новую точку входа CNY")).row(KeyboardButton("Назад"))
+
+usd_sbros_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Сбросить точку входа USD")).row(KeyboardButton("Назад"))
+eur_sbros_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Сбросить точку входа EUR")).row(KeyboardButton("Назад"))
+cny_sbros_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, selective=True).add(KeyboardButton("Сбросить точку входа CNY")).row(KeyboardButton("Назад"))
