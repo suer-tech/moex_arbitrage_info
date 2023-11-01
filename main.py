@@ -1,6 +1,6 @@
 import json
 import time
-
+import emoji
 from FinamPy import FinamPy
 from FinamPy.Config import Config
 
@@ -89,7 +89,7 @@ def write_spread(currience, diff):
 
 
 def write_signal_to_file(signal, signal_txt):
-    with open('sig_proc.txt', 'a') as file:
+    with open('sig_proc.txt', 'a', encoding='utf-8') as file:
         file.write(signal + '\n')
     with open(signal_txt, 'w') as file:
         pass
@@ -136,10 +136,12 @@ def check_signal(curr, spread_txt, tvh_txt, signal_txt):
 
     # Проверяем условия и записываем сигнал, если они выполняются
         if z >= x + x / 100 * y:
-            signal = f"{curr}: спред вырос на {y}%"
+            bell_emoji = "🔔"
+            signal = f"{bell_emoji}{curr}: спред вырос на {y}%"
             write_signal_to_file(signal, signal_txt)
         elif z <= x - x / 100 * y:
-            signal = f"{curr}: спред снизился на {y}%"
+            bell_emoji = "🔔"
+            signal = f"{bell_emoji}{curr}: спред снизился на {y}%"
             write_signal_to_file(signal, signal_txt)
 
 

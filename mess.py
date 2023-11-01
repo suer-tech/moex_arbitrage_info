@@ -3,14 +3,14 @@ import os
 import time
 import chardet
 
-token = '5814873337:AAFmEDxaPRXmg8w1HQ4FTiNB1U5l8pgtFgE'
+token = '6673857772:AAH4ZFcC9PFGSPs7o447QP_UQJNUiLjaVLw'
 bot = telebot.TeleBot(token, parse_mode=None)
-users_id = [412850740]  # Замените на свой список ID пользователей
+users_id = [314943379]  # Замените на свой список ID пользователей
 
 def send_message(txt_file):
     if os.path.exists(txt_file) and os.stat(txt_file).st_size > 0:
         encoding = detect_encoding(txt_file)
-        with open(txt_file, 'r', encoding=encoding) as fr:
+        with open(txt_file, 'r', encoding='utf-8') as fr:
             mess = fr.read()
         for user in users_id:
             try:

@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 import os
-
+import emoji
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram import Bot, types
@@ -24,8 +24,8 @@ class YourState(StatesGroup):
     new_cny_only = State()
 
 
-
-token = '5814873337:AAFmEDxaPRXmg8w1HQ4FTiNB1U5l8pgtFgE'
+checkmark = "✅"
+token = '6673857772:AAH4ZFcC9PFGSPs7o447QP_UQJNUiLjaVLw'
 
 bot = Bot(token)
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -163,7 +163,7 @@ async def fix_usd_tvh(message: types.Message):
                 if x is not None:
                     data_to_write = x
                     fw.write(data_to_write)
-                    await message.answer(f"Точка входа {x} для USD зафиксирована.", reply_markup=usd_fiks_keyboard)
+                    await message.answer(f"{checkmark}Точка входа {x} для USD зафиксирована.", reply_markup=usd_fiks_keyboard)
                 else:
                     await message.answer("Не удалось найти точку входа для USD.", reply_markup=usd_fiks_keyboard)
         else:
@@ -185,7 +185,7 @@ async def fix_usd_tvh(message: types.Message):
             if x is not None:
                 data_to_write = x
                 fw.write(data_to_write)
-                await message.answer(f"Точка входа {x} для USD зафиксирована.", reply_markup=usd_fiks_keyboard)
+                await message.answer(f"{checkmark}Точка входа {x} для USD зафиксирована.", reply_markup=usd_fiks_keyboard)
             else:
                 await message.answer("Не удалось найти точку входа для USD.", reply_markup=usd_fiks_keyboard)
 
@@ -213,7 +213,7 @@ async def fix_usd_tvh(message: types.Message):
                 if x is not None:
                     data_to_write = x
                     fw.write(data_to_write)
-                    await message.answer(f"Точка входа {x} для USD зафиксирована.", reply_markup=eur_fiks_keyboard)
+                    await message.answer(f"{checkmark}Точка входа {x} для USD зафиксирована.", reply_markup=eur_fiks_keyboard)
                 else:
                     await message.answer("Не удалось найти точку входа для EUR.", reply_markup=eur_fiks_keyboard)
         else:
@@ -235,7 +235,7 @@ async def fix_usd_tvh(message: types.Message):
             if x is not None:
                 data_to_write = x
                 fw.write(data_to_write)
-                await message.answer(f"Точка входа {x} для EUR зафиксирована.", reply_markup=eur_fiks_keyboard)
+                await message.answer(f"{checkmark}Точка входа {x} для EUR зафиксирована.", reply_markup=eur_fiks_keyboard)
             else:
                 await message.answer("Не удалось найти точку входа для USD.", reply_markup=eur_fiks_keyboard)
 
@@ -263,7 +263,7 @@ async def fix_usd_tvh(message: types.Message):
                 if x is not None:
                     data_to_write = x
                     fw.write(data_to_write)
-                    await message.answer(f"Точка входа {x} для USD зафиксирована.", reply_markup=cny_fiks_keyboard)
+                    await message.answer(f"{checkmark}Точка входа {x} для USD зафиксирована.", reply_markup=cny_fiks_keyboard)
                 else:
                     await message.answer("Не удалось найти точку входа для USD.", reply_markup=cny_fiks_keyboard)
         else:
@@ -285,7 +285,7 @@ async def fix_usd_tvh(message: types.Message):
             if x is not None:
                 data_to_write = x
                 fw.write(data_to_write)
-                await message.answer(f"Точка входа {x} для CNY зафиксирована.", reply_markup=cny_fiks_keyboard)
+                await message.answer(f"{checkmark}Точка входа {x} для CNY зафиксирована.", reply_markup=cny_fiks_keyboard)
             else:
                 await message.answer("Не удалось найти точку входа для USD.", reply_markup=cny_fiks_keyboard)
 
@@ -333,7 +333,7 @@ async def process_new_signal(message: types.Message, state: FSMContext):
         # Сохраняем новый сигнал в файл
         with open("usd_signal.txt", "w") as file:
             file.write(data['new_signal'])
-        await message.answer(f"Новый сигнал в % от точки входа по USD установлен: {data['new_signal']}",
+        await message.answer(f"{checkmark}Новый сигнал в % от точки входа по USD установлен: {data['new_signal']}",
                              reply_markup=signal_keyboard)
 
     # Завершаем состояние FSMContext
@@ -390,7 +390,7 @@ async def process_new_signal_eur(message: types.Message, state: FSMContext):
 
         with open("eur_signal.txt", "w") as file:
             file.write(data['new_signal'])
-        await message.answer(f"Новый сигнал в % от точки входа по EUR установлен: {data['new_signal']}", reply_markup=signal_keyboard)
+        await message.answer(f"{checkmark}Новый сигнал в % от точки входа по EUR установлен: {data['new_signal']}", reply_markup=signal_keyboard)
 
     await state.finish()
 
@@ -444,7 +444,7 @@ async def process_new_signal_eur(message: types.Message, state: FSMContext):
 
         with open("cny_signal.txt", "w") as file:
             file.write(data['new_signal'])
-        await message.answer(f"Новый сигнал в % от точки входа по CNY установлен: {data['new_signal']}", reply_markup=signal_keyboard)
+        await message.answer(f"{checkmark}Новый сигнал в % от точки входа по CNY установлен: {data['new_signal']}", reply_markup=signal_keyboard)
 
     await state.finish()
 
@@ -570,7 +570,7 @@ async def process_new_signal(message: types.Message, state: FSMContext):
         # Сохраняем новый сигнал в файл
         with open("usd_signal_only.txt", "w") as file:
             file.write(data['new_signal'])
-        await message.answer(f"Новый сигнал в % по USD установлен: {data['new_signal']}",
+        await message.answer(f"{checkmark}Новый сигнал в % по USD установлен: {data['new_signal']}",
                              reply_markup=signal_only_keyboard)
 
     # Завершаем состояние FSMContext
@@ -639,7 +639,7 @@ async def process_new_signal(message: types.Message, state: FSMContext):
         # Сохраняем новый сигнал в файл
         with open("eur_signal_only.txt", "w") as file:
             file.write(data['new_signal'])
-        await message.answer(f"Новый сигнал в % по EUR установлен: {data['new_signal']}",
+        await message.answer(f"{checkmark}Новый сигнал в % по EUR установлен: {data['new_signal']}",
                              reply_markup=signal_only_keyboard)
 
     # Завершаем состояние FSMContext
@@ -708,7 +708,7 @@ async def process_new_signal(message: types.Message, state: FSMContext):
         # Сохраняем новый сигнал в файл
         with open("cny_signal_only.txt", "w") as file:
             file.write(data['new_signal'])
-        await message.answer(f"Новый сигнал в % по CNY установлен: {data['new_signal']}",
+        await message.answer(f"{checkmark}Новый сигнал в % по CNY установлен: {data['new_signal']}",
                              reply_markup=signal_only_keyboard)
 
     # Завершаем состояние FSMContext
